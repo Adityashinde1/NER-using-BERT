@@ -22,3 +22,28 @@ class DataTransformationConfig:
         self.df_train_path: str = os.path.join(self.data_transformation_artifacts_dir, DF_TRAIN_FILE_NAME)
         self.df_val_path: str = os.path.join(self.data_transformation_artifacts_dir, DF_VAL_FILE_NAME)
         self.df_test_path: str = os.path.join(self.data_transformation_artifacts_dir, DF_TEST_FILE_NAME)
+        self.unique_labels_path: str = os.path.join(self.data_transformation_artifacts_dir, UNIQUE_LABELS_FILE_NAME)
+
+
+@dataclass
+class ModelTrainingConfig:
+    def __init__(self):
+        self.model_training_artifacts_dir: str = os.path.join(from_root(), ARTIFACTS_DIR, MODEL_TRAINING_ARTIFACTS_DIR)
+        self.bert_model_instance_path: str = os.path.join(self.model_training_artifacts_dir, GCP_MODEL_NAME)
+        self.tokenizer_file_path: str = os.path.join(self.model_training_artifacts_dir, TOKENIZER_FILE_NAME)
+
+
+@dataclass
+class ModelEvalConfig:
+    def __init__(self):
+        self.model_evaluation_artifacts_dir: str = os.path.join(from_root(), ARTIFACTS_DIR, MODEL_EVALUATION_ARTIFACTS_DIR)
+        self.gcp_model_path: str = os.path.join(from_root())
+        self.gcp_local_path: str = os.path.join(from_root(), GCP_MODEL_NAME)
+
+
+@dataclass
+class ModelPusherConfig:
+    def __init__(self):
+        self.bucket_name: str = BUCKET_NAME
+        self.model_name: str = GCP_MODEL_NAME
+        self.upload_model_path: str = os.path.join(from_root(), ARTIFACTS_DIR, MODEL_TRAINING_ARTIFACTS_DIR)

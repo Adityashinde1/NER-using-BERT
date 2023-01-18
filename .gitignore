@@ -10,6 +10,8 @@ __pycache__/
 ner.csv
 artifacts
 demo.py
+logs
+model.pt
 # Distribution / packaging
 .Python
 build/

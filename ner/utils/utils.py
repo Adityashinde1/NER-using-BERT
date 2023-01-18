@@ -7,15 +7,15 @@ import yaml
 from zipfile import Path
 from ner.constant import *
 from ner.exception import NerException
-import logging
+from ner.logger import logging
 
-# initiatlizing logger
-logger = logging.getLogger(__name__)
+# initiatlizing logging
+
 
 
 class MainUtils:
     def read_yaml_file(self, filename: str) -> Dict:
-        logger.info("Entered the read_yaml_file method of MainUtils class")
+        logging.info("Entered the read_yaml_file method of MainUtils class")
         try:
             with open(filename, "rb") as yaml_file:
                 return yaml.safe_load(yaml_file)
@@ -46,11 +46,11 @@ class MainUtils:
             
 
     def save_numpy_array_data(self, file_path: str, array: np.array) -> str:
-        logger.info("Entered the save_numpy_array_data method of MainUtils class")
+        logging.info("Entered the save_numpy_array_data method of MainUtils class")
         try:
             with open(file_path, "wb") as file_obj:
                 np.save(file_obj, array)
-            logger.info("Exited the save_numpy_array_data method of MainUtils class")
+            logging.info("Exited the save_numpy_array_data method of MainUtils class")
             return file_path
 
         except Exception as e:
@@ -58,7 +58,7 @@ class MainUtils:
 
 
     def load_numpy_array_data(self, file_path: str) -> np.array:
-        logger.info("Entered the load_numpy_array_data method of MainUtils class")
+        logging.info("Entered the load_numpy_array_data method of MainUtils class")
         try:
             with open(file_path, "rb") as file_obj:
                 return np.load(file_obj)
@@ -69,12 +69,12 @@ class MainUtils:
 
     @staticmethod
     def save_object(file_path: str, obj: object) -> None:
-        logger.info("Entered the save_object method of MainUtils class")
+        logging.info("Entered the save_object method of MainUtils class")
         try:
             with open(file_path, "wb") as file_obj:
                 dill.dump(obj, file_obj)
 
-            logger.info("Exited the save_object method of MainUtils class")
+            logging.info("Exited the save_object method of MainUtils class")
 
             return file_path
 
@@ -84,11 +84,11 @@ class MainUtils:
 
     @staticmethod
     def load_object(file_path: str) -> object:
-        logger.info("Entered the load_object method of MainUtils class")
+        logging.info("Entered the load_object method of MainUtils class")
         try:
             with open(file_path, "rb") as file_obj:
                 obj = dill.load(file_obj)
-            logger.info("Exited the load_object method of MainUtils class")
+            logging.info("Exited the load_object method of MainUtils class")
             return obj
 
         except Exception as e:
@@ -97,7 +97,7 @@ class MainUtils:
 
     @staticmethod        
     def read_txt_file(file_path: str) -> str:
-        logger.info("Entered the read_txt_file method of MainUtils class")
+        logging.info("Entered the read_txt_file method of MainUtils class")
         try:
             # Opening file for read only
             file1 = open(file_path, 'r', encoding="utf8")
@@ -105,7 +105,7 @@ class MainUtils:
             text = file1.readlines()
             # close the file
             file1.close()
-            logger.info("Exited the read_txt_file method of MainUtils class")
+            logging.info("Exited the read_txt_file method of MainUtils class")
             return text
 
         except Exception as e:
