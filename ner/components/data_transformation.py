@@ -1,10 +1,8 @@
 import os
 import sys
-
 import numpy as np
 import pandas as pd
 from pandas import DataFrame
-
 from ner.entity.artifacts_entity import (DataIngestionArtifacts,
                                          DataTransformationArtifacts)
 from ner.entity.config_entity import DataTransformationConfig
@@ -22,14 +20,14 @@ class DataTransformation:
     def splitting_data(self, df: DataFrame):
         logging.info("Entered the splitting_data method of Data transformation class")
         try:
-            df = df[0:500]
+            df = df[0:1000]
 
             labels = [i.split() for i in df['labels'].values.tolist()]
             unique_labels = set()
 
             for lb in labels:
                     [unique_labels.add(i) for i in lb if i not in unique_labels]
-                    
+
             labels_to_ids = {k: v for v, k in enumerate(unique_labels)}
             ids_to_labels = {v: k for v, k in enumerate(unique_labels)}
 
@@ -60,6 +58,9 @@ class DataTransformation:
 
             self.utils.dump_pickle_file(output_filepath=self.data_transformation_config.ids_to_labels_path, data=ids_to_labels)
             logging.info(f"Saved the ids to labels pickle file to Artifacts directory. File name - {os.path.basename(self.data_transformation_config.ids_to_labels_path)}")
+
+            self.utils.dump_pickle_file(output_filepath=self.data_transformation_config.ids_to_labels_local_path, data=ids_to_labels)
+            logging.info(f"Saved the ids to labels pickle file to local directory. File name - {os.path.basename(self.data_transformation_config.ids_to_labels_local_path)}")
 
             self.utils.dump_pickle_file(output_filepath=self.data_transformation_config.df_train_path, data=df_train)
             logging.info(f"Saved the train df pickle file to Artifacts directory. File name - {os.path.basename(self.data_transformation_config.df_train_path)}")

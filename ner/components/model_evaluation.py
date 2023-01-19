@@ -1,16 +1,17 @@
 import os
 import sys
 import torch
+from torch.utils.data import DataLoader
+from ner.components.model_training import DataSequence
+from ner.configuration.gcloud import GCloud
+from ner.constant import *
+from ner.entity.artifacts_entity import (DataTransformationArtifacts,
+                                         ModelEvaluationArtifacts,
+                                         ModelTrainingArtifacts)
+from ner.entity.config_entity import ModelEvalConfig
+from ner.exception import NerException
 from ner.logger import logging
 from ner.utils.utils import MainUtils
-from ner.configuration.gcloud import GCloud
-from ner.components.model_training import DataSequence
-from torch.utils.data import DataLoader
-from ner.exception import NerException
-from ner.constant import *
-from ner.entity.config_entity import ModelEvalConfig
-from ner.entity.artifacts_entity import ModelTrainingArtifacts, DataTransformationArtifacts, ModelEvaluationArtifacts
-
 
 
 class ModelEvaluation:
@@ -59,7 +60,7 @@ class ModelEvaluation:
                     total_acc_test += acc
 
             val_accuracy = total_acc_test / len(df_test)
-            
+
             print(f'Test Accuracy: {val_accuracy: .3f}')
             return val_accuracy
 

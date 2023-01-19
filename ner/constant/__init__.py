@@ -8,6 +8,7 @@ ARTIFACTS_DIR = os.path.join(from_root(), "artifacts", TIMESTAMP)
 LOGS_DIR = 'logs'
 LOGS_FILE_NAME = 'ner.log' 
 MODELS_DIR = 'models'
+BEST_MODEL_DIR = 'best_model'
 
 BUCKET_NAME = 'ner-using-bert'
 GCP_DATA_FILE_NAME = 'archive.zip'
@@ -26,7 +27,7 @@ UNIQUE_LABELS_FILE_NAME = 'unique_labels.pkl'
 
 MODEL_TRAINING_ARTIFACTS_DIR = 'ModelTrainingArtifacts'
 LEARNING_RATE = 5e-3
-EPOCHS = 1
+EPOCHS = 10
 BATCH_SIZE = 2
 BERT_MODEL_INSTANCE_NAME = 'bert_model_instance.pt'
 TOKENIZER_FILE_NAME = 'tokenizer.pkl'

@@ -1,18 +1,18 @@
 import os
 import sys
-from ner.logger import logging
 import torch
-from tqdm import tqdm
-from ner.utils.utils import MainUtils
-from torch.utils.data import DataLoader
-from transformers import BertTokenizerFast
-from ner.constant import *
 from torch.optim import SGD
+from torch.utils.data import DataLoader
+from tqdm import tqdm
+from transformers import BertTokenizerFast
 from models.bert import BertModel
+from ner.constant import *
+from ner.entity.artifacts_entity import (DataTransformationArtifacts,
+                                         ModelTrainingArtifacts)
 from ner.entity.config_entity import ModelTrainingConfig
-from ner.entity.artifacts_entity import DataTransformationArtifacts, ModelTrainingArtifacts
 from ner.exception import NerException
-
+from ner.logger import logging
+from ner.utils.utils import MainUtils
 
 
 class DataSequence(torch.utils.data.Dataset):
@@ -190,10 +190,14 @@ class ModelTraining:
                     f'Epochs: {epoch_num + 1} | Loss: {total_loss_train / len(df_train): .3f} | Accuracy: {total_acc_train / len(df_train): .3f} | Val_Loss: {val_loss: .3f} | Accuracy: {val_accuracy: .3f}')
 
             torch.save(model, self.model_trainer_config.bert_model_instance_path)
-            logging.info("Model saved to artifacts directory")
+            logging.info(f"Model saved to artifacts directory. File name - {os.path.basename(self.model_trainer_config.bert_model_instance_path)}")
 
             self.utils.dump_pickle_file(output_filepath=self.model_trainer_config.tokenizer_file_path, data=tokenizer)
-            logging.info("Created tokenizer object")
+            logging.info(f"Dumped pickle file to the artifacts directory. File name - {os.path.basename(self.model_trainer_config.tokenizer_file_path)}")
+
+            self.utils.dump_pickle_file(output_filepath=self.model_trainer_config.tokenizer_local_path, data=tokenizer)
+            logging.info(f"Dumped pickle file to the local directory. File name - {os.path.basename(self.model_trainer_config.tokenizer_local_path)}")
+
             model_training_artifacts = ModelTrainingArtifacts(bert_model_path=self.model_trainer_config.bert_model_instance_path,
                                                                 tokenizer_file_path=self.model_trainer_config.tokenizer_file_path)
 
