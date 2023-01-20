@@ -131,7 +131,7 @@ class ModelPredictor:
             )
             logging.info("Loaded ids to lables file.")
 
-            model = torch.load(self.model_predictor_config.best_model_path)
+            model = torch.load(self.model_predictor_config.best_model_path, map_location=torch.device('cpu'))
             logging.info("Best model loaded for prediction.")
 
             sentence, prediction_lable = self.evaluate_one_text(
