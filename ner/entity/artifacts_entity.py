@@ -33,7 +33,7 @@ class ModelEvaluationArtifacts:
     is_model_accepted: bool
 
 
-@ dataclass
+@dataclass
 class ModelPusherArtifacts:
     bucket_name: str
     trained_model_path: str

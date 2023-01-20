@@ -24,11 +24,18 @@
 #     model_pusher = ModelPusher(model_evaluation_artifact=model_eval_artifact, model_pusher_config=ModelPusherConfig())
 #     model_pusher.initiate_model_pusher()
 
-from ner.pipeline.prediction_pipeline import ModelPredictor
+# from ner.pipeline.prediction_pipeline import ModelPredictor
 
-mp = ModelPredictor()
+# mp = ModelPredictor()
 
-sen, label = mp.initiate_model_predictor(sentence='Bill Gates is the founder of Microsoft')
+# sen, label = mp.initiate_model_predictor(sentence='Bill Gates is the founder of Microsoft')
 
-print(sen)
-print(label)
+# print(sen)
+# print(label)
+
+
+from ner.pipeline.train_pipeline import TrainPipeline
+
+tp = TrainPipeline()
+
+tp.run_pipeline()

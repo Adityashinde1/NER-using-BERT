@@ -16,6 +16,5 @@ def training():
         raise NerException(e, sys) from e
 
 
-
 if __name__ == "__main__":
     training()

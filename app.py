@@ -1,9 +1,7 @@
-import os
-import sys
-from fastapi import FastAPI, File
+from fastapi import FastAPI
 from uvicorn import run as app_run
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import Response, JSONResponse
+from fastapi.responses import Response
 from train import training as start_training
 from ner.pipeline.prediction_pipeline import ModelPredictor
 from ner.constant import *
@@ -19,6 +17,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 
 @app.get("/train")
 async def training():
@@ -42,6 +41,7 @@ async def predict_route(text: str):
 
     except Exception as e:
         return Response(f"Error Occurred! {e}")
+
 
 if __name__ == "__main__":
     app_run(app, host=APP_HOST, port=APP_PORT)
