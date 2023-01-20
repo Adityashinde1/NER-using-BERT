@@ -39,3 +39,28 @@ from ner.pipeline.train_pipeline import TrainPipeline
 tp = TrainPipeline()
 
 tp.run_pipeline()
+
+
+# Add API in the file and change permissions
+# api:
+#     auth_token: f0b6729453ac61769be5b9b5c4283013912680505fe24e526e201d0aa5f61cc0d4d199cd1793fb89
+
+# runner:
+#     name: dl-ineuron
+#     working_directory: /var/opt/circleci/workdir
+#     cleanup_working_directory: true
+
+
+
+
+# [Unit]
+# Description=CircleCI Runner
+# After=network.target
+# [Service]
+# ExecStart=/opt/circleci/circleci-launch-agent --config /etc/opt/circleci/launch-agent-config.yaml
+# Restart=always
+# User=circleci
+# NotifyAccess=exec
+# TimeoutStopSec=18300
+# [Install]
+# WantedBy = multi-user.target
