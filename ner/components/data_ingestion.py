@@ -75,7 +75,7 @@ class DataIngestion:
                 zip_data_file_path=self.data_ingestion_config.gcp_data_file_path,
                 csv_data_file_path=self.data_ingestion_config.csv_data_file_path,
             )
-
+            logging.info("Exited the initiate_data_ingestion method of data ingestion class")
             return data_ingestion_artifact
 
         except Exception as e:

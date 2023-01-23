@@ -26,10 +26,11 @@ class DataTransformation:
         self.utils = MainUtils()
         self.gcloud = GCloud()
 
-    def splitting_data(self, df: DataFrame):
+    def splitting_data(self, df: DataFrame) -> dict:
         logging.info("Entered the splitting_data method of Data transformation class")
         try:
-            df = df[0:500]
+            # Taking subset of data for training
+            df = df[0:1000]
 
             labels = [i.split() for i in df["labels"].values.tolist()]
             unique_labels = set()
@@ -65,6 +66,7 @@ class DataTransformation:
             "Entered the initiate_data_transformation method of Data transformation class"
         )
         try:
+            # Creating Data transformation artifacts directory
             os.makedirs(
                 self.data_transformation_config.data_transformation_artifacts_dir,
                 exist_ok=True,
@@ -148,7 +150,7 @@ class DataTransformation:
                 df_test_path=self.data_transformation_config.df_test_path,
                 unique_labels_path=self.data_transformation_config.unique_labels_path,
             )
-
+            logging.info("Exited the initiate_data_transformation method of Data transformation class")
             return data_transformation_artifacts
 
         except Exception as e:

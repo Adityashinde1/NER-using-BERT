@@ -37,7 +37,7 @@ class DataSequence(torch.utils.data.Dataset):
             self.align_label(i, j, tokenizer, labels_to_ids) for i, j in zip(txt, lb)
         ]
 
-    def __len__(self):
+    def __len__(self) -> int:
 
         return len(self.labels)
 
@@ -56,9 +56,9 @@ class DataSequence(torch.utils.data.Dataset):
 
         return batch_data, batch_labels
 
-    def align_label(self, texts, labels, tokenizer, labels_to_ids):
+    def align_label(self, texts: str, labels: str, tokenizer: dict, labels_to_ids: dict) -> list:
         try:
-
+            logging.info("Entered the align_label method of DataSequence class")
             label_all_tokens = False
             tokenized_inputs = tokenizer(
                 texts, padding="max_length", max_length=512, truncation=True
@@ -90,6 +90,7 @@ class DataSequence(torch.utils.data.Dataset):
                         label_ids.append(-100)
                 previous_word_idx = word_idx
 
+            logging.info("Exited the align_label method of DataSequence class")
             return label_ids
 
         except Exception as e:
@@ -109,6 +110,7 @@ class ModelTraining:
 
     def initiate_model_training(self) -> ModelTrainingArtifacts:
         try:
+            logging.info("Entered the initiate_model_training method of Model training class")
             os.makedirs(
                 self.model_trainer_config.model_training_artifacts_dir, exist_ok=True
             )
@@ -264,6 +266,7 @@ class ModelTraining:
                 tokenizer_file_path=self.model_trainer_config.tokenizer_file_path,
             )
 
+            logging.info("Exited the initiate_model_training method of Model training class")
             return model_training_artifacts
 
         except Exception as e:

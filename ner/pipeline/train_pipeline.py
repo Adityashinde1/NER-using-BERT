@@ -37,12 +37,12 @@ class TrainPipeline:
     def start_data_ingestion(self) -> DataIngestionArtifacts:
         logging.info("Entered the start_data_ingestion method of TrainPipeline class")
         try:
-            logging.info("Getting the data from Google container registry")
+            logging.info("Getting the data from Google cloud storage")
             data_ingestion = DataIngestion(
                 data_ingestion_config=self.data_ingestion_config, gcloud=self.gcloud
             )
             data_ingestion_artifact = data_ingestion.initiate_data_ingestion()
-            logging.info("Got the data from Google container registry")
+            logging.info("Got the data from Google cloud storage")
             logging.info(
                 "Exited the start_data_ingestion method of TrainPipeline class"
             )
@@ -50,6 +50,7 @@ class TrainPipeline:
 
         except Exception as e:
             raise NerException(e, sys) from e
+
 
     # This method is used to start the data validation
     def start_data_transformation(
@@ -77,6 +78,7 @@ class TrainPipeline:
         except Exception as e:
             raise NerException(e, sys) from e
 
+
     # This method is used to start the model trainer
     def start_model_training(
         self, data_transformation_artifacts: DataTransformationArtifacts
@@ -89,6 +91,7 @@ class TrainPipeline:
             )
             model_trainer_artifact = model_trainer.initiate_model_training()
 
+            logging.info("Performed the Model training operation")
             logging.info(
                 "Exited the start_model_training method of Train pipeline class"
             )
@@ -97,6 +100,8 @@ class TrainPipeline:
         except Exception as e:
             raise NerException(e, sys) from e
 
+
+    # This method is used to start model evaluation
     def start_model_evaluation(
         self,
         data_transformation_artifact: DataTransformationArtifacts,
@@ -122,6 +127,8 @@ class TrainPipeline:
         except Exception as e:
             raise NerException(e, sys) from e
 
+
+    # This method is used to statr model pusher
     def start_model_pusher(
         self, model_evaluation_artifact: ModelEvaluationArtifacts
     ) -> ModelPusherArtifacts:
@@ -141,8 +148,11 @@ class TrainPipeline:
         except Exception as e:
             raise NerException(e, sys) from e
 
+
+    # This method is used to start the training pipeline
     def run_pipeline(self) -> None:
         try:
+            logging.info("Started Model training >>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
             data_ingestion_artifact = self.start_data_ingestion()
             data_transformation_artifacts = self.start_data_transformation(
                 data_ingestion_artifact=data_ingestion_artifact

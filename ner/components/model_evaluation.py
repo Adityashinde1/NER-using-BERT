@@ -1,6 +1,7 @@
 import os
 import sys
 import torch
+from pandas import DataFrame
 from torch.utils.data import DataLoader
 from ner.components.model_training import DataSequence
 from ner.configuration.gcloud import GCloud
@@ -29,8 +30,9 @@ class ModelEvaluation:
         self.utils = MainUtils()
         self.gcloud = GCloud()
 
-    def evaluate(self, model, df_test):
+    def evaluate(self, model: object, df_test: DataFrame) -> float:
         try:
+            logging.info("Entered the evaluate method of Model evaluation class")
             tokenizer = self.utils.load_pickle_file(
                 filepath=self.model_training_artifacts.tokenizer_file_path
             )
@@ -73,13 +75,18 @@ class ModelEvaluation:
             val_accuracy = total_acc_test / len(df_test)
 
             print(f"Test Accuracy: {val_accuracy: .3f}")
+
+            logging.info("Exited the evaluate method of Model evaluation class")
             return val_accuracy
 
         except Exception as e:
             raise NerException(e, sys) from e
+        
 
     def initiate_model_evaluation(self) -> ModelEvaluationArtifacts:
         try:
+            logging.info("Entered the initiate_model_evaluation method of Model evaluation class")
+
             # Creating Data Ingestion Artifacts directory inside artifacts folder
             os.makedirs(
                 self.model_evaluation_config.model_evaluation_artifacts_dir,
@@ -116,7 +123,7 @@ class ModelEvaluation:
 
                 gcp_model_accuracy = self.evaluate(model=gcp_model, df_test=df_test)
                 logging.info(
-                    f"Calculated the gcp model accuracy. - {gcp_model_accuracy}"
+                    f"Calculated the gcp model's Test accuracy. - {gcp_model_accuracy}"
                 )
 
                 tmp_best_model_score = (
@@ -131,7 +138,7 @@ class ModelEvaluation:
                 trained_model_accuracy=trained_model_accuracy,
                 is_model_accepted=trained_model_accuracy > tmp_best_model_score,
             )
-
+            logging.info("Exited the initiate_model_evaluation method of Model evaluation class")
             return model_evaluation_artifact
 
         except Exception as e:

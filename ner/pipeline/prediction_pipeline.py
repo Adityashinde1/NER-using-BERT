@@ -15,7 +15,7 @@ class ModelPredictor:
         self.utils = MainUtils()
         self.gcloud = GCloud()
 
-    def align_word_ids(self, texts, tokenizer) -> list:
+    def align_word_ids(self, texts: str, tokenizer: dict) -> list:
         logging.info("Entered the align_word_ids method of Model predictor class")
         try:
             label_all_tokens = False
@@ -52,7 +52,8 @@ class ModelPredictor:
         except Exception as e:
             raise NerException(e, sys) from e
 
-    def evaluate_one_text(self, model, sentence, tokenizer, ids_to_labels) -> str:
+
+    def evaluate_one_text(self, model: object, sentence: str, tokenizer: dict, ids_to_labels: dict) -> str:
         logging.info("Entered the evaluate_one_text method of Model predictor class")
         try:
 
@@ -90,9 +91,10 @@ class ModelPredictor:
         except Exception as e:
             raise NerException(e, sys) from e
 
+
     def initiate_model_predictor(self, sentence: str) -> str:
         logging.info(
-            "Enetred the initiate_model_predictor method of Model predictor class"
+            "Started Model Prediction >>>>>>>>>>>>>>>>>>>>>>>>>"
         )
         try:
             os.makedirs(self.model_predictor_config.best_model_dir, exist_ok=True)
@@ -141,9 +143,6 @@ class ModelPredictor:
                 ids_to_labels=ids_to_labels,
             )
 
-            logging.info(
-                "Exited the initiate_model_predictor method of Model predictor class"
-            )
             return sentence, prediction_lable
 
         except Exception as e:
