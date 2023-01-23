@@ -30,6 +30,7 @@ class ModelEvaluation:
         self.utils = MainUtils()
         self.gcloud = GCloud()
 
+
     def evaluate(self, model: object, df_test: DataFrame) -> float:
         try:
             logging.info("Entered the evaluate method of Model evaluation class")

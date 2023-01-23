@@ -15,6 +15,7 @@ class ModelPredictor:
         self.utils = MainUtils()
         self.gcloud = GCloud()
 
+
     def align_word_ids(self, texts: str, tokenizer: dict) -> list:
         logging.info("Entered the align_word_ids method of Model predictor class")
         try:
