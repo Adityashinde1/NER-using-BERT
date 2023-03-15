@@ -17,10 +17,11 @@ class ModelPusher:
         self.model_pusher_config = model_pusher_config
         self.gcloud = GCloud()
 
-
     def initiate_model_pusher(self) -> ModelPusherArtifacts:
         try:
-            logging.info("Enetred the initiate_model_pusher method of Model pusher class")
+            logging.info(
+                "Enetred the initiate_model_pusher method of Model pusher class"
+            )
             if self.model_evaluation_artifact.is_model_accepted == True:
 
                 # Uploading the model to google container registry

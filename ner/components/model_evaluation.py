@@ -30,7 +30,6 @@ class ModelEvaluation:
         self.utils = MainUtils()
         self.gcloud = GCloud()
 
-
     def evaluate(self, model: object, df_test: DataFrame) -> float:
         try:
             logging.info("Entered the evaluate method of Model evaluation class")
@@ -82,11 +81,12 @@ class ModelEvaluation:
 
         except Exception as e:
             raise NerException(e, sys) from e
-        
 
     def initiate_model_evaluation(self) -> ModelEvaluationArtifacts:
         try:
-            logging.info("Entered the initiate_model_evaluation method of Model evaluation class")
+            logging.info(
+                "Entered the initiate_model_evaluation method of Model evaluation class"
+            )
 
             # Creating Data Ingestion Artifacts directory inside artifacts folder
             os.makedirs(
@@ -139,7 +139,9 @@ class ModelEvaluation:
                 trained_model_accuracy=trained_model_accuracy,
                 is_model_accepted=trained_model_accuracy > tmp_best_model_score,
             )
-            logging.info("Exited the initiate_model_evaluation method of Model evaluation class")
+            logging.info(
+                "Exited the initiate_model_evaluation method of Model evaluation class"
+            )
             return model_evaluation_artifact
 
         except Exception as e:

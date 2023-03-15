@@ -15,7 +15,6 @@ class ModelPredictor:
         self.utils = MainUtils()
         self.gcloud = GCloud()
 
-
     def align_word_ids(self, texts: str, tokenizer: dict) -> list:
         logging.info("Entered the align_word_ids method of Model predictor class")
         try:
@@ -53,8 +52,9 @@ class ModelPredictor:
         except Exception as e:
             raise NerException(e, sys) from e
 
-
-    def evaluate_one_text(self, model: object, sentence: str, tokenizer: dict, ids_to_labels: dict) -> str:
+    def evaluate_one_text(
+        self, model: object, sentence: str, tokenizer: dict, ids_to_labels: dict
+    ) -> str:
         logging.info("Entered the evaluate_one_text method of Model predictor class")
         try:
 
@@ -92,11 +92,8 @@ class ModelPredictor:
         except Exception as e:
             raise NerException(e, sys) from e
 
-
     def initiate_model_predictor(self, sentence: str) -> str:
-        logging.info(
-            "Started Model Prediction >>>>>>>>>>>>>>>>>>>>>>>>>"
-        )
+        logging.info("Started Model Prediction >>>>>>>>>>>>>>>>>>>>>>>>>")
         try:
             os.makedirs(self.model_predictor_config.best_model_dir, exist_ok=True)
             logging.info(
@@ -134,7 +131,10 @@ class ModelPredictor:
             )
             logging.info("Loaded ids to lables file.")
 
-            model = torch.load(self.model_predictor_config.best_model_path, map_location=torch.device('cpu'))
+            model = torch.load(
+                self.model_predictor_config.best_model_path,
+                map_location=torch.device("cpu"),
+            )
             logging.info("Best model loaded for prediction.")
 
             sentence, prediction_lable = self.evaluate_one_text(

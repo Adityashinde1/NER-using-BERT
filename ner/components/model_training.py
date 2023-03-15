@@ -56,7 +56,9 @@ class DataSequence(torch.utils.data.Dataset):
 
         return batch_data, batch_labels
 
-    def align_label(self, texts: str, labels: str, tokenizer: dict, labels_to_ids: dict) -> list:
+    def align_label(
+        self, texts: str, labels: str, tokenizer: dict, labels_to_ids: dict
+    ) -> list:
         try:
             logging.info("Entered the align_label method of DataSequence class")
             label_all_tokens = False
@@ -110,7 +112,9 @@ class ModelTraining:
 
     def initiate_model_training(self) -> ModelTrainingArtifacts:
         try:
-            logging.info("Entered the initiate_model_training method of Model training class")
+            logging.info(
+                "Entered the initiate_model_training method of Model training class"
+            )
             os.makedirs(
                 self.model_trainer_config.model_training_artifacts_dir, exist_ok=True
             )
@@ -266,7 +270,9 @@ class ModelTraining:
                 tokenizer_file_path=self.model_trainer_config.tokenizer_file_path,
             )
 
-            logging.info("Exited the initiate_model_training method of Model training class")
+            logging.info(
+                "Exited the initiate_model_training method of Model training class"
+            )
             return model_training_artifacts
 
         except Exception as e:

@@ -51,7 +51,6 @@ class TrainPipeline:
         except Exception as e:
             raise NerException(e, sys) from e
 
-
     # This method is used to start the data validation
     def start_data_transformation(
         self, data_ingestion_artifact: DataIngestionArtifacts
@@ -78,7 +77,6 @@ class TrainPipeline:
         except Exception as e:
             raise NerException(e, sys) from e
 
-
     # This method is used to start the model trainer
     def start_model_training(
         self, data_transformation_artifacts: DataTransformationArtifacts
@@ -99,7 +97,6 @@ class TrainPipeline:
 
         except Exception as e:
             raise NerException(e, sys) from e
-
 
     # This method is used to start model evaluation
     def start_model_evaluation(
@@ -127,7 +124,6 @@ class TrainPipeline:
         except Exception as e:
             raise NerException(e, sys) from e
 
-
     # This method is used to statr model pusher
     def start_model_pusher(
         self, model_evaluation_artifact: ModelEvaluationArtifacts
@@ -147,7 +143,6 @@ class TrainPipeline:
 
         except Exception as e:
             raise NerException(e, sys) from e
-
 
     # This method is used to start the training pipeline
     def run_pipeline(self) -> None:

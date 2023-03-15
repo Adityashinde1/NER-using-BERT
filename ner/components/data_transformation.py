@@ -150,7 +150,9 @@ class DataTransformation:
                 df_test_path=self.data_transformation_config.df_test_path,
                 unique_labels_path=self.data_transformation_config.unique_labels_path,
             )
-            logging.info("Exited the initiate_data_transformation method of Data transformation class")
+            logging.info(
+                "Exited the initiate_data_transformation method of Data transformation class"
+            )
             return data_transformation_artifacts
 
         except Exception as e:

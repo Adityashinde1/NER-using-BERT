@@ -16,7 +16,6 @@ class DataIngestion:
         self.data_ingestion_config = data_ingestion_config
         self.gcloud = gcloud
 
-
     def get_data_from_gcp(self, bucket_name: str, file_name: str, path: str) -> ZipFile:
         logging.info("Entered the get_data_from_gcp method of data ingestion class")
         try:
@@ -27,7 +26,6 @@ class DataIngestion:
 
         except Exception as e:
             raise NerException(e, sys) from e
-
 
     def extract_data(self, input_file_path: str, output_file_path: str) -> None:
         logging.info("Entered the extract_data method of Data ingestion class")
@@ -42,7 +40,6 @@ class DataIngestion:
 
         except Exception as e:
             raise NerException(e, sys) from e
-
 
     def initiate_data_ingestion(self) -> DataIngestionArtifacts:
         logging.info(
@@ -78,7 +75,9 @@ class DataIngestion:
                 zip_data_file_path=self.data_ingestion_config.gcp_data_file_path,
                 csv_data_file_path=self.data_ingestion_config.csv_data_file_path,
             )
-            logging.info("Exited the initiate_data_ingestion method of data ingestion class")
+            logging.info(
+                "Exited the initiate_data_ingestion method of data ingestion class"
+            )
             return data_ingestion_artifact
 
         except Exception as e:
