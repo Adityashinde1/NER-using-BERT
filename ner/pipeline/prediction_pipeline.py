@@ -1,6 +1,8 @@
 import os
 import sys
+
 import torch
+
 from ner.configuration.gcloud import GCloud
 from ner.constant import *
 from ner.entity.config_entity import ModelPredictorConfig

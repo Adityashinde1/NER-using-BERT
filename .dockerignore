@@ -1,6 +1,8 @@
-.circleci
+.circleci/
 assignments/
+best_model/
 flowchart/
 notebooks/
 venv/
-demo.py
+LICENSE
+README.md 

@@ -1,4 +1,5 @@
 import sys
+
 from ner.components.data_ingestion import DataIngestion
 from ner.components.data_transformation import DataTransformation
 from ner.components.model_evaluation import ModelEvaluation
@@ -10,8 +11,8 @@ from ner.entity.artifacts_entity import (
     DataIngestionArtifacts,
     DataTransformationArtifacts,
     ModelEvaluationArtifacts,
-    ModelTrainingArtifacts,
     ModelPusherArtifacts,
+    ModelTrainingArtifacts,
 )
 from ner.entity.config_entity import (
     DataIngestionConfig,

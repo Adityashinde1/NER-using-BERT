@@ -1,6 +1,5 @@
 import os
 from zipfile import Path
-import time
 
 
 class GCloud:
@@ -15,15 +14,5 @@ class GCloud:
     ):
 
         command = f"gsutil -m cp -r gs://{gcp_bucket_url}/{filename} {destination}"
-        # command = f"gsutil cp gs://{gcp_bucket_url}/{filename} {destination}/{filename}"
-
-        # command = f"gsutil cp gs://{gcp_bucket_url}/{filename} {destination}/{filename}"
 
         os.system(command)
-
-        # time.sleep(15)
-
-
-# gsutil -m cp -r gs://code-generation-using-transformers/archive.zip ./
-
-# gsutil cp text.txt gs://code-generation-using-transformers/

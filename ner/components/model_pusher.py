@@ -1,4 +1,5 @@
 import sys
+
 from ner.configuration.gcloud import GCloud
 from ner.constant import *
 from ner.entity.artifacts_entity import ModelEvaluationArtifacts, ModelPusherArtifacts

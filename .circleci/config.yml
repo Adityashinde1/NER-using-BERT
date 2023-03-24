@@ -70,7 +70,7 @@ jobs:
           command: gcloud auth configure-docker $GOOGLE_COMPUTE_ZONE-docker.pkg.dev
 
       - run:
-          name: Pull image from Google Artifa
+          name: Pull image from Google Artifacts
           command: docker pull ${GOOGLE_COMPUTE_ZONE}-docker.pkg.dev/${GOOGLE_PROJECT_ID}/$REPOSITORY/$GAR_IMAGE_NAME:$IMAGE_TA
 
       - run:

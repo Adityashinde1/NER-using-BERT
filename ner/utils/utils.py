@@ -1,10 +1,12 @@
+import pickle
 import sys
 from typing import Dict
+from zipfile import Path
+
 import dill
-import pickle
 import numpy as np
 import yaml
-from zipfile import Path
+
 from ner.constant import *
 from ner.exception import NerException
 from ner.logger import logging

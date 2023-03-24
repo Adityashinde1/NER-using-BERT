@@ -1,6 +1,7 @@
 import os
 import sys
 from zipfile import ZipFile
+
 from ner.configuration.gcloud import GCloud
 from ner.constant import *
 from ner.entity.artifacts_entity import DataIngestionArtifacts

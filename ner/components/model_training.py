@@ -1,17 +1,19 @@
 import os
 import sys
+
 import torch
 from torch.optim import SGD
 from torch.utils.data import DataLoader
 from tqdm import tqdm
 from transformers import BertTokenizerFast
+
 from models.bert import BertModel
+from ner.configuration.gcloud import GCloud
 from ner.constant import *
 from ner.entity.artifacts_entity import (
     DataTransformationArtifacts,
     ModelTrainingArtifacts,
 )
-from ner.configuration.gcloud import GCloud
 from ner.entity.config_entity import ModelTrainingConfig
 from ner.exception import NerException
 from ner.logger import logging
