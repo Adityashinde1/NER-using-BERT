@@ -1,6 +1,6 @@
 version: '3'
 services:
   application:
-    image: "${IMAGE_NAME}"
+    image: asia-south1-docker.pkg.dev/project-neuron-368805/ner-bert/ner-bert:latest
     ports:
-      - "8080:8080"
+      - "80:8080"

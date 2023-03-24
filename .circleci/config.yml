@@ -76,13 +76,10 @@ jobs:
       - run:
           name: Start Docker container
           command: docker compose up -d
-          environment:
-            IMAGE_NAME: '${GOOGLE_COMPUTE_ZONE}-docker.pkg.dev/${GOOGLE_PROJECT_ID}/$REPOSITORY/$GAR_IMAGE_NAME:$IMAGE_TAG'
 
       - run:
           name: free up system space
           command: docker system prune -f
-
 
 workflows:
   CICD:
