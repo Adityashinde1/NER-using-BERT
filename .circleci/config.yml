@@ -48,10 +48,6 @@ jobs:
   continuous-deployment:
     machine: true
     resource_class: deep-learning-01/dl-ineuron
-    environment:
-      REPOSITORY: ner-bert
-      GAR_IMAGE_NAME: ner-bert
-      IMAGE_TAG: latest
     steps:
       - checkout
 
