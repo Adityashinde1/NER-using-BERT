@@ -5,8 +5,6 @@ from ner.exception import NerException
 from ner.pipeline.train_pipeline import TrainPipeline
 
 
-
-
 def training():
     try:
         train_pipeline = TrainPipeline()
